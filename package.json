@@ -1,5 +1,5 @@
 {
-  "name": "@mersocarlin/deployer",
+  "name": "mersocarlin-deployer",
   "version": "0.0.0",
   "description": "Deployer CLI by @mersocarlin",
   "files": [
