@@ -5,6 +5,7 @@
   "files": [
     "dist",
     "package.json",
+    "LICENSE",
     "README.md"
   ],
   "bin": {
