@@ -6,23 +6,23 @@ import * as utils from './cli/utils'
 import { deploy } from './deployers/heroku'
 
 const program = new Commander.Command(pkg.name)
-  .version(pkg.version)
-  .requiredOption('--provider <value>', 'Provider to deploy application')
-  .option('--verbose', 'Enable verbose mode')
+  .version(pkg.version, '-v, --version', 'output the current version')
+  .option('--provider <value>', 'provider to deploy application')
+  .option('--verbose', 'enable verbose mode')
   // docker image config
-  .option('--container-registry-host <value>', 'Container registry host')
+  .option('--container-registry-host <value>', 'container registry host')
   .option(
     '--container-registry-username <value>',
-    'Container registry username',
+    'container registry username',
   )
   .option(
     '--container-registry-password <value>',
-    'Container registry password',
+    'container registry password',
   )
-  .option('--dockerfile-path <value>', 'Path to Dockerfile')
+  .option('--dockerfile-path <value>', 'path to Dockerfile')
   // Heroku config
   .option('--heroku-api-key <value>', 'Heroku api key')
-  .option('--heroku-app-name <value>', 'Name of Heroku app')
+  .option('--heroku-app-name <value>', 'name of Heroku app')
   .parse(process.argv)
 
 async function run(): Promise<void> {
@@ -40,6 +40,10 @@ async function run(): Promise<void> {
   } = program.opts()
 
   utils.header()
+
+  if (!provider || typeof provider !== 'string') {
+    utils.exit('Provider is required.')
+  }
 
   const strProvider = provider.toLowerCase()
 
