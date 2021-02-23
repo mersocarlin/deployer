@@ -1,0 +1,11 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": ["dom", "ESNext"],
+    "moduleResolution": "Node",
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
+}
