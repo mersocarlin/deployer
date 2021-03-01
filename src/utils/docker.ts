@@ -22,11 +22,15 @@ export async function buildDockerImage({
   await runCommand('docker --version', { printCommand: verbose })
   await runCommand(
     `docker login ${containerRegistryHost} -u ${containerRegistryUsername} -p ${containerRegistryPassword}`,
-    { printCommand: false }
+    { printCommand: false },
   )
-  await runCommand(`docker build -f ${dockerfilePath} -t ${buildImageName} .`, {
-    printCommand: verbose,
-  })
+  await runCommand(
+    `docker build -f ${dockerfilePath} --build-arg DEPLOYER_BUILD_DATE="${new Date().toISOString()}" -t ${buildImageName} .`,
+    {
+      printCommand: verbose,
+    },
+  )
+
   await runCommand(`docker tag ${buildImageName} ${releaseImageName}`, {
     printCommand: verbose,
   })
