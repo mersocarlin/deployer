@@ -29,15 +29,15 @@
   "homepage": "https://github.com/mersocarlin/deployer#readme",
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@types/node": "^14.14.31",
     "@types/pretty-hrtime": "^1.0.0",
     "husky": "^5.0.9",
     "rimraf": "^3.0.2",
     "rollup": "^2.39.1",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
     "tslib": "^2.1.0",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "@mersocarlin/fetch": "^0.0.3",
