@@ -20,15 +20,17 @@ export async function buildDockerImage({
   verbose,
 }: BuildDockerImageConfig) {
   await runCommand('docker --version', { printCommand: verbose })
+
   await runCommand(
-    `docker login ${containerRegistryHost} -u ${containerRegistryUsername} -p ${containerRegistryPassword}`,
-    { printCommand: false },
+    `echo ${containerRegistryPassword} | docker login ${containerRegistryHost} --username ${containerRegistryUsername} --password-stdin`,
+    { printCommand: false }
   )
+
   await runCommand(
     `docker build -f ${dockerfilePath} --build-arg DEPLOYER_BUILD_DATE="${new Date().toISOString()}" -t ${buildImageName} .`,
     {
       printCommand: verbose,
-    },
+    }
   )
 
   await runCommand(`docker tag ${buildImageName} ${releaseImageName}`, {
