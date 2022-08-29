@@ -22,7 +22,7 @@ export async function buildDockerImage({
   await runCommand('docker --version', { printCommand: verbose })
 
   await runCommand(
-    `echo ${containerRegistryPassword} | docker login ${containerRegistryHost} --username ${containerRegistryUsername} --password-stdin`,
+    `docker login ${containerRegistryHost} -u ${containerRegistryUsername} -p ${containerRegistryPassword}`,
     { printCommand: false }
   )
 
